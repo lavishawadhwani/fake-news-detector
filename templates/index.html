@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Fake News Detection System</h1>
+    <p class="subtitle">AI-based news authenticity checker</p>
+
+    <div class="examples">
+        <button type="button" onclick="fillExample('real')">Try Real News</button>
+        <button type="button" onclick="fillExample('fake')">Try Fake News</button>
+    </div>
+
+    <form method="POST">
+        <textarea name="news" placeholder="Paste news text here..." required></textarea>
+        <button type="submit">Analyze News</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result {{ prediction }}">
+        <h2>Prediction: {{ prediction }}</h2>
+        <p>Confidence: {{ confidence }}%</p>
+    </div>
+    {% endif %}
+
+    <div class="disclaimer">
+        ⚠️ This tool uses machine learning and may not always be accurate.
+        For educational purposes only.
+    </div>
+</div>
+
+<footer>
+    Developed by Lavisha Wadhwani | AIML
+</footer>
+
+<script>
+function fillExample(type) {
+    let text = "";
+    if (type === "real") {
+        text = "India and Japan signed a bilateral agreement to expand cooperation in semiconductor manufacturing and digital infrastructure.";
+    } else {
+        text = "Scientists confirm that drinking cola daily cures cancer within one week.";
+    }
+    document.querySelector("textarea").value = text;
+}
+</script>
+
+</body>
+</html>
+
